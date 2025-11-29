@@ -121,10 +121,10 @@ export function ProductFilterBar({
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
-        <p>
+        {/* <p>
           Search syncs with the URL so you can share a filtered view with other
           reviewers.
-        </p>
+        </p> */}
         <Button
           type="button"
           variant="ghost"

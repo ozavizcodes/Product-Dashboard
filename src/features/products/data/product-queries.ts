@@ -10,7 +10,7 @@ import {
   createProduct,
   type CreateProductInput,
 } from '@/features/products/data/product-service'
-import type { Product, ProductListParams, ProductsResponse } from '@/features/products/types'
+import type { ProductListParams, ProductsResponse } from '@/features/products/types'
 
 export const productKeys = {
   all: ['products'] as const,
