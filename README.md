@@ -1,8 +1,8 @@
-# Product Dashboard
+# Product Dashboard by Faith Abraham
 
 A modern React SPA that lets operations users explore the products catalog from [dummyjson.com](https://dummyjson.com/products). Built with a focus on clarity of architecture, predictable data-fetching, accessibility-first UI primitives, and thoughtful UX patterns.
 
-> **Note:** Screenshots should showcase the main Products page (`/products`) which displays the paginated product list with filters, search, and sorting capabilities.
+
 
 ## Features
 
@@ -72,7 +72,7 @@ A modern React SPA that lets operations users explore the products catalog from 
 - **Prettier + ESLint** with strict TypeScript config
 - **Path aliases** (`@/*`) for clean imports
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 src/

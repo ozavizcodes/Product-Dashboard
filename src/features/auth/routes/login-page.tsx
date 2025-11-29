@@ -133,9 +133,7 @@ export function LoginPage() {
             </Button>
           </div>
 
-          <p className="text-center text-xs text-slate-400">
-            For this assessment, any non-empty credentials will work.
-          </p>
+          
         </form>
       </Card>
     </section>

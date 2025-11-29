@@ -90,7 +90,7 @@ export function AppLayout() {
         <footer className="border-t border-white/10 bg-surface-100/60">
           <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-4 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between">
             <p>
-              © {currentYear} Product Dashboard Assessment by Ozavizcodes
+              © {currentYear} Product Dashboard by Ozavizcodes
             </p>
             <p>Built with React, Vite, TanStack Query & Tailwind CSS</p>
           </div>
