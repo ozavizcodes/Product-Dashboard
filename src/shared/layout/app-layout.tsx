@@ -1,8 +1,17 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { cn } from '@/lib/utils'
+import { useAuth } from '@/lib/use-auth'
+import { Button } from '@/shared/ui/button'
 
 export function AppLayout() {
   const currentYear = new Date().getFullYear()
+  const { user, logout } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/login', { replace: true })
+  }
 
   return (
     <div className="min-h-screen bg-surface-50 text-slate-100">
@@ -45,6 +54,21 @@ export function AppLayout() {
                     Products
                   </NavLink>
                 </li>
+                {user && (
+                  <li className="flex items-center gap-3">
+                    <span className="text-xs text-slate-400">
+                      {user.username}
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleLogout}
+                      aria-label="Sign out"
+                    >
+                      Sign Out
+                    </Button>
+                  </li>
+                )}
               </ul>
             </nav>
           </div>

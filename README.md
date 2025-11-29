@@ -1,4 +1,4 @@
-# Product Dashboard · Lotus Beta Analytics Assessment
+# Product Dashboard
 
 A modern React SPA that lets operations users explore the products catalog from [dummyjson.com](https://dummyjson.com/products). The app will include a paginated inventory table, rich filtering/search, sorting, and a detail view with thoughtful loading/error UX.
 
