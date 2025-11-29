@@ -163,13 +163,13 @@ npm run preview    # Preview production build locally
 
 ## Deployment
 
-**Live Demo:** [Add Vercel URL here after deployment]
+**Live Demo:** [https://product-dashboard-gray-five.vercel.app/products](https://product-dashboard-gray-five.vercel.app/products)
 
 **Build Command:** `npm run build`  
 **Publish Directory:** `dist`  
 **Environment Variables:** None required (public API)
 
-**Deployment Platform:** Vercel (configured with `vercel.json` for SPA routing)
+**Deployment Platform:** Vercel
 
 ## License
 
