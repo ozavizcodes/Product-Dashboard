@@ -8,11 +8,11 @@ type ButtonSize = 'sm' | 'md'
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-brand-500 text-white shadow-card hover:bg-brand-400 focus-visible:ring-brand-300',
+    'bg-gradient-to-r from-brand-600 to-brand-500 text-white shadow-lg shadow-brand-500/25 hover:from-brand-500 hover:to-brand-400 focus-visible:ring-brand-400/50 transition-all duration-200',
   secondary:
-    'bg-white/10 text-white shadow-card hover:bg-white/20 focus-visible:ring-white/40',
+    'bg-white/10 text-white border border-white/20 shadow-lg hover:bg-white/20 hover:border-white/30 focus-visible:ring-white/40 transition-all duration-200',
   ghost:
-    'text-slate-200 hover:bg-white/10 focus-visible:ring-white/30 focus-visible:text-white',
+    'text-slate-300 hover:bg-white/10 hover:text-white focus-visible:ring-white/30 focus-visible:text-white transition-all duration-200',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {

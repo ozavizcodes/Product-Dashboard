@@ -22,32 +22,32 @@ export function AppLayout() {
         Skip to main content
       </a>
       <div className="flex min-h-screen flex-col">
-        <header className="border-b border-white/10 bg-surface-100/40 backdrop-blur">
+        <header className="border-b border-white/10 bg-gradient-to-r from-surface-100/60 via-surface-100/40 to-surface-100/60 backdrop-blur-md">
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4">
-            <NavLink to="/products" className="flex items-center gap-2">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-600 text-lg font-bold text-white shadow-card">
+            <NavLink
+              to="/products"
+              className="flex items-center gap-3 transition-opacity hover:opacity-80"
+            >
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-brand-500 text-lg font-bold text-white shadow-lg shadow-brand-500/30">
                 PD
               </span>
               <div>
-                <p className="text-sm font-semibold uppercase tracking-widest text-slate-200">
+                <p className="text-sm font-bold uppercase tracking-widest text-white">
                   Product Dashboard
-                </p>
-                <p className="text-xs text-slate-400">
-                  Lotus Beta Analytics · Assessment
                 </p>
               </div>
             </NavLink>
             <nav aria-label="Primary navigation">
-              <ul className="flex items-center gap-4 text-sm font-medium text-slate-300">
+              <ul className="flex items-center gap-3 text-sm font-medium">
                 <li>
                   <NavLink
                     to="/products"
                     className={({ isActive }) =>
                       cn(
-                        'rounded-md px-3 py-2 transition',
+                        'rounded-lg px-4 py-2 transition-all duration-200',
                         isActive
-                          ? 'bg-white/10 text-white shadow-card'
-                          : 'hover:text-white',
+                          ? 'bg-gradient-to-r from-brand-600/20 to-brand-500/20 text-white shadow-lg shadow-brand-500/20 border border-brand-500/30'
+                          : 'text-slate-300 hover:bg-white/5 hover:text-white',
                       )
                     }
                   >
@@ -55,15 +55,21 @@ export function AppLayout() {
                   </NavLink>
                 </li>
                 {user && (
-                  <li className="flex items-center gap-3">
-                    <span className="text-xs text-slate-400">
-                      {user.username}
-                    </span>
+                  <li className="flex items-center gap-3 border-l border-white/10 pl-3">
+                    <div className="flex items-center gap-2">
+                      <div className="h-8 w-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center text-xs font-semibold text-white">
+                        {user.username.charAt(0).toUpperCase()}
+                      </div>
+                      <span className="text-sm font-medium text-slate-300">
+                        {user.username}
+                      </span>
+                    </div>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={handleLogout}
                       aria-label="Sign out"
+                      className="ml-2"
                     >
                       Sign Out
                     </Button>

@@ -22,11 +22,13 @@ export function PageHeader({
       )}
     >
       <div>
-        <h1 className="text-2xl font-semibold text-white sm:text-3xl">
+        <h1 className="bg-gradient-to-r from-white via-white to-slate-300 bg-clip-text text-2xl font-bold text-transparent sm:text-3xl">
           {title}
         </h1>
         {description ? (
-          <p className="mt-2 max-w-2xl text-sm text-slate-400">{description}</p>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-400">
+            {description}
+          </p>
         ) : null}
       </div>
       {actions ? <div className="flex flex-wrap gap-3">{actions}</div> : null}

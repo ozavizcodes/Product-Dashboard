@@ -41,29 +41,35 @@ export function ProductFilterBar({
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
       <form
         onSubmit={handleSearchSubmit}
         className="flex flex-col gap-3 sm:flex-row"
       >
         <label className="flex-1 text-sm">
           <span className="sr-only">Search products</span>
-          <Input
-            value={filters.search}
-            onChange={handleSearchChange}
-            placeholder="Search by product title..."
-            aria-label="Search products by title"
-            disabled={isDisabled}
-          />
+          <div className="relative">
+            <Input
+              value={filters.search}
+              onChange={handleSearchChange}
+              placeholder="Search by product title or brand..."
+              aria-label="Search products by title"
+              disabled={isDisabled}
+              className="pl-10"
+            />
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+              🔍
+            </span>
+          </div>
         </label>
-        <Button type="submit" disabled={isDisabled}>
+        <Button type="submit" disabled={isDisabled} className="min-w-[100px]">
           Search
         </Button>
       </form>
 
-      <div className="grid gap-3 md:grid-cols-4">
-        <label className="text-xs uppercase tracking-wide text-slate-400">
-          <span className="mb-2 block text-[0.7rem] font-semibold text-slate-400">
+      <div className="grid gap-4 md:grid-cols-4">
+        <label className="text-xs uppercase tracking-wide">
+          <span className="mb-2 block text-xs font-bold text-slate-300">
             Brand
           </span>
           <Select
@@ -82,8 +88,8 @@ export function ProductFilterBar({
           </Select>
         </label>
 
-        <label className="text-xs uppercase tracking-wide text-slate-400">
-          <span className="mb-2 block text-[0.7rem] font-semibold text-slate-400">
+        <label className="text-xs uppercase tracking-wide">
+          <span className="mb-2 block text-xs font-bold text-slate-300">
             Category
           </span>
           <Select
@@ -102,8 +108,8 @@ export function ProductFilterBar({
           </Select>
         </label>
 
-        <label className="text-xs uppercase tracking-wide text-slate-400 md:col-span-2">
-          <span className="mb-2 block text-[0.7rem] font-semibold text-slate-400">
+        <label className="text-xs uppercase tracking-wide md:col-span-2">
+          <span className="mb-2 block text-xs font-bold text-slate-300">
             Sort by
           </span>
           <Select
@@ -120,19 +126,19 @@ export function ProductFilterBar({
         </label>
       </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
-        {/* <p>
-          Search syncs with the URL so you can share a filtered view with other
-          reviewers.
-        </p> */}
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3">
+        <p className="text-xs text-slate-400">
+          💡 Filters sync with URL for easy sharing
+        </p>
         <Button
           type="button"
           variant="ghost"
           size="sm"
           onClick={onReset}
           disabled={isDisabled}
+          className="text-xs"
         >
-          Reset filters
+          ↻ Reset All
         </Button>
       </div>
     </div>

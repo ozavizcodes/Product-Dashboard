@@ -114,7 +114,7 @@ export function ProductsPage() {
             variant="secondary"
             onClick={() => navigate('/products/new')}
           >
-            New product
+            + New Product
           </Button>
         }
       />
@@ -131,14 +131,21 @@ export function ProductsPage() {
       </Card>
 
       <Card className="space-y-4">
-        <div className="flex items-center justify-between text-sm text-slate-400">
-          <p>
-            {totalItems} result{totalItems === 1 ? '' : 's'} · sorted by{' '}
-            {sort === 'newest' ? 'newest first' : 'oldest first'} · page {pageIndex} of{' '}
-            {totalPages}
-          </p>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2">
+            <div className="rounded-lg bg-brand-500/20 px-3 py-1.5">
+              <p className="text-sm font-semibold text-brand-300">
+                {totalItems} {totalItems === 1 ? 'result' : 'results'}
+              </p>
+            </div>
+            <p className="text-sm text-slate-400">
+              Sorted by <span className="font-medium text-white">{sort === 'newest' ? 'newest first' : 'oldest first'}</span> · Page{' '}
+              <span className="font-medium text-white">{pageIndex}</span> of{' '}
+              <span className="font-medium text-white">{totalPages}</span>
+            </p>
+          </div>
           <Button variant="ghost" size="sm" onClick={() => refetch()} disabled={isPending}>
-            Refresh data
+            ↻ Refresh
           </Button>
         </div>
 
@@ -176,34 +183,34 @@ export function ProductsPage() {
             </Button>
           </div>
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto rounded-lg border border-white/10">
             <table className="min-w-full divide-y divide-white/10">
-              <thead className="text-left text-xs uppercase tracking-widest text-slate-400">
+              <thead className="bg-gradient-to-r from-surface-200/50 to-surface-300/30 text-left text-xs uppercase tracking-widest text-slate-400">
                 <tr>
-                  <th scope="col" className="py-3 pr-4 font-semibold">
+                  <th scope="col" className="py-4 pl-6 pr-4 font-semibold">
                     Product
                   </th>
-                  <th scope="col" className="py-3 px-4 font-semibold">
+                  <th scope="col" className="py-4 px-4 font-semibold">
                     Brand
                   </th>
-                  <th scope="col" className="py-3 px-4 font-semibold">
+                  <th scope="col" className="py-4 px-4 font-semibold">
                     Category
                   </th>
-                  <th scope="col" className="py-3 px-4 font-semibold">
+                  <th scope="col" className="py-4 px-4 font-semibold">
                     Price
                   </th>
-                  <th scope="col" className="py-3 px-4 font-semibold">
+                  <th scope="col" className="py-4 px-4 font-semibold">
                     Rating
                   </th>
-                  <th scope="col" className="py-3 px-4 font-semibold">
+                  <th scope="col" className="py-4 px-4 font-semibold">
                     Stock
                   </th>
-                  <th scope="col" className="py-3 pl-4 font-semibold">
+                  <th scope="col" className="py-4 pl-4 pr-6 font-semibold">
                     Created
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/5">
+              <tbody className="divide-y divide-white/5 bg-surface-200/20">
                 {pagedProducts.map((product) => (
                   <tr
                     key={product.id}
@@ -216,44 +223,68 @@ export function ProductsPage() {
                         handleNavigateToProduct(product.id)
                       }
                     }}
-                    className="cursor-pointer bg-white/0 transition hover:bg-white/5 focus:bg-white/10"
+                    className="group cursor-pointer bg-white/0 transition-all duration-200 hover:bg-gradient-to-r hover:from-brand-500/10 hover:to-brand-600/5 hover:shadow-lg hover:shadow-brand-500/5 focus:bg-white/10"
                   >
-                    <td className="py-4 pr-4">
+                    <td className="py-4 pl-6 pr-4">
                       <div className="flex items-center gap-3">
-                        <img
-                          src={product.thumbnail}
-                          alt=""
-                          width={48}
-                          height={48}
-                          className="h-12 w-12 rounded-lg object-cover"
-                          loading="lazy"
-                        />
-                        <div>
-                          <p className="font-semibold text-white">
+                        <div className="relative overflow-hidden rounded-lg ring-2 ring-white/10 transition-all group-hover:ring-brand-500/30">
+                          <img
+                            src={product.thumbnail}
+                            alt=""
+                            width={56}
+                            height={56}
+                            className="h-14 w-14 object-cover transition-transform duration-200 group-hover:scale-110"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-semibold text-white transition-colors group-hover:text-brand-300">
                             {product.title}
                           </p>
-                          <p className="text-xs text-slate-400 line-clamp-1">
+                          <p className="mt-0.5 text-xs text-slate-400 line-clamp-1">
                             {product.description}
                           </p>
                         </div>
                       </div>
                     </td>
-                    <td className="py-4 px-4 text-sm text-slate-300">
-                      {product.brand}
+                    <td className="py-4 px-4">
+                      <span className="inline-flex items-center rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-slate-300">
+                        {product.brand}
+                      </span>
                     </td>
-                    <td className="py-4 px-4 text-sm text-slate-300">
-                      {product.category}
+                    <td className="py-4 px-4">
+                      <span className="inline-flex items-center rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-slate-300 capitalize">
+                        {product.category.replace(/-/g, ' ')}
+                      </span>
                     </td>
-                    <td className="py-4 px-4 text-sm font-semibold text-white">
-                      {currencyFormatter.format(product.price)}
+                    <td className="py-4 px-4">
+                      <span className="text-sm font-bold text-white">
+                        {currencyFormatter.format(product.price)}
+                      </span>
                     </td>
-                    <td className="py-4 px-4 text-sm text-slate-300">
-                      {product.rating.toFixed(1)} / 5
+                    <td className="py-4 px-4">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-sm font-semibold text-white">
+                          {product.rating.toFixed(1)}
+                        </span>
+                        <span className="text-xs text-slate-400">/ 5</span>
+                        <span className="text-yellow-400">★</span>
+                      </div>
                     </td>
-                    <td className="py-4 px-4 text-sm text-slate-300">
-                      {product.stock}
+                    <td className="py-4 px-4">
+                      <span
+                        className={`inline-flex items-center rounded-md px-2.5 py-1 text-xs font-semibold ${
+                          product.stock > 50
+                            ? 'bg-accent-success/20 text-accent-success'
+                            : product.stock > 0
+                              ? 'bg-accent-warning/20 text-accent-warning'
+                              : 'bg-accent-error/20 text-accent-error'
+                        }`}
+                      >
+                        {product.stock}
+                      </span>
                     </td>
-                    <td className="py-4 pl-4 text-sm text-slate-300">
+                    <td className="py-4 pl-4 pr-6 text-sm text-slate-400">
                       {formatDate(product.meta?.createdAt)}
                     </td>
                   </tr>

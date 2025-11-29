@@ -28,6 +28,11 @@ export function createProductListQueryOptions(params: ProductListParams) {
   })
 }
 
+/**
+ * Creates query options for fetching a single product.
+ * Note: For locally created products, the component should handle cache checking
+ * directly using useQueryClient, as query options can't access the query client.
+ */
 export function createProductDetailQueryOptions(productId: string | number) {
   return queryOptions({
     queryKey: productKeys.detail(productId),
