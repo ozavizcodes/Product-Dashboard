@@ -67,9 +67,9 @@ export function ProductFilterBar({
         </Button>
       </form>
 
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 md:grid-cols-4">
         <label className="text-xs uppercase tracking-wide">
-          <span className="mb-2 block text-xs font-bold text-slate-300">
+          <span className="mb-1.5 sm:mb-2 block text-xs font-bold text-slate-300">
             Brand
           </span>
           <Select
@@ -89,7 +89,7 @@ export function ProductFilterBar({
         </label>
 
         <label className="text-xs uppercase tracking-wide">
-          <span className="mb-2 block text-xs font-bold text-slate-300">
+          <span className="mb-1.5 sm:mb-2 block text-xs font-bold text-slate-300">
             Category
           </span>
           <Select
@@ -108,8 +108,8 @@ export function ProductFilterBar({
           </Select>
         </label>
 
-        <label className="text-xs uppercase tracking-wide md:col-span-2">
-          <span className="mb-2 block text-xs font-bold text-slate-300">
+        <label className="text-xs uppercase tracking-wide sm:col-span-2 md:col-span-2">
+          <span className="mb-1.5 sm:mb-2 block text-xs font-bold text-slate-300">
             Sort by
           </span>
           <Select
@@ -128,7 +128,7 @@ export function ProductFilterBar({
 
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3">
         <p className="text-xs text-slate-400">
-          💡 Filters sync with URL for easy sharing
+          Filters sync with URL for easy sharing
         </p>
         <Button
           type="button"

@@ -171,7 +171,7 @@ export function ProductDetailPage() {
       />
 
       {/* Main Product Info */}
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-3">
         {/* Product Image */}
         <Card className="lg:col-span-1">
           <div className="aspect-square overflow-hidden rounded-lg bg-gradient-to-br from-surface-200 to-surface-300">
@@ -183,7 +183,7 @@ export function ProductDetailPage() {
             />
           </div>
           {product.images && product.images.length > 0 && (
-            <div className="mt-4 grid grid-cols-4 gap-2">
+            <div className="mt-3 sm:mt-4 grid grid-cols-4 gap-2">
               {product.images.slice(0, 4).map((image, idx) => (
                 <div
                   key={idx}
@@ -202,66 +202,66 @@ export function ProductDetailPage() {
         </Card>
 
         {/* Product Details */}
-        <div className="space-y-6 lg:col-span-2">
+        <div className="space-y-4 sm:space-y-6 lg:col-span-2">
           {/* KPI Cards */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card className="bg-gradient-to-br from-brand-600/20 to-brand-700/10 border-brand-500/30">
-              <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-brand-300">
+          <div className="grid gap-3 sm:gap-4 grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
+            <Card className="bg-gradient-to-br from-brand-600/20 to-brand-700/10 border-brand-500/30 p-3 sm:p-4">
+              <div className="space-y-1.5 sm:space-y-2">
+                <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-brand-300">
                   Price
                 </p>
-                <p className="text-3xl font-bold text-white">
+                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
                   {currencyFormatter.format(product.price)}
                 </p>
                 {product.discountPercentage > 0 && (
-                  <p className="text-xs text-brand-300">
+                  <p className="text-[10px] sm:text-xs text-brand-300">
                     {product.discountPercentage}% off
                   </p>
                 )}
               </div>
             </Card>
 
-            <Card className="bg-gradient-to-br from-accent-success/20 to-accent-success/10 border-accent-success/30">
-              <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-accent-success/80">
+            <Card className="bg-gradient-to-br from-accent-success/20 to-accent-success/10 border-accent-success/30 p-3 sm:p-4">
+              <div className="space-y-1.5 sm:space-y-2">
+                <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-accent-success/80">
                   Stock
                 </p>
-                <p className="text-3xl font-bold text-white">{product.stock}</p>
-                <Badge variant={stockStatus.variant} className="text-xs">
+                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">{product.stock}</p>
+                <Badge variant={stockStatus.variant} className="text-[10px] sm:text-xs">
                   {stockStatus.label}
                 </Badge>
               </div>
             </Card>
 
-            <Card className="bg-gradient-to-br from-accent-warning/20 to-accent-warning/10 border-accent-warning/30">
-              <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-accent-warning/80">
+            <Card className="bg-gradient-to-br from-accent-warning/20 to-accent-warning/10 border-accent-warning/30 p-3 sm:p-4">
+              <div className="space-y-1.5 sm:space-y-2">
+                <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-accent-warning/80">
                   Rating
                 </p>
-                <div className="flex items-center gap-2">
-                  <p className="text-3xl font-bold text-white">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">
                     {product.rating.toFixed(1)}
                   </p>
-                  <div className="flex text-yellow-400">
+                  <div className="flex text-yellow-400 text-xs sm:text-sm">
                     {[...Array(5)].map((_, i) => (
                       <span key={i}>{i < ratingStars ? '★' : '☆'}</span>
                     ))}
                   </div>
                 </div>
-                <p className="text-xs text-slate-400">out of 5.0</p>
+                <p className="text-[10px] sm:text-xs text-slate-400">out of 5.0</p>
               </div>
             </Card>
 
-            <Card className="bg-gradient-to-br from-surface-300/50 to-surface-200/30 border-white/10">
-              <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            <Card className="bg-gradient-to-br from-surface-300/50 to-surface-200/30 border-white/10 p-3 sm:p-4">
+              <div className="space-y-1.5 sm:space-y-2">
+                <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-slate-400">
                   Created
                 </p>
-                <p className="text-lg font-semibold text-white">
+                <p className="text-base sm:text-lg font-semibold text-white">
                   {formatDate(product.meta?.createdAt)}
                 </p>
                 {product.meta?.updatedAt && (
-                  <p className="text-xs text-slate-400">
+                  <p className="text-[10px] sm:text-xs text-slate-400">
                     Updated {formatDate(product.meta.updatedAt)}
                   </p>
                 )}
@@ -270,11 +270,11 @@ export function ProductDetailPage() {
           </div>
 
           {/* Product Metadata */}
-          <Card>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-slate-400">
+          <Card className="p-4 sm:p-6">
+            <h3 className="mb-3 sm:mb-4 text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-400">
               Product Information
             </h3>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
               <div className="space-y-1">
                 <p className="text-xs text-slate-400">Brand</p>
                 <p className="font-semibold text-white">{product.brand}</p>

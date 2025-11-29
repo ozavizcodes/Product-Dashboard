@@ -110,7 +110,7 @@ export function CreateProductPage() {
   }
 
   return (
-    <section className="mx-auto max-w-2xl space-y-8">
+    <section className="mx-auto max-w-2xl space-y-6 sm:space-y-8">
       <PageHeader
         title="Create New Product"
         description="Add a new product to the catalog. All fields are required."
@@ -119,14 +119,15 @@ export function CreateProductPage() {
             variant="ghost"
             onClick={() => navigate('/products')}
             disabled={createProductMutation.isPending}
+            className="text-xs sm:text-sm"
           >
             Cancel
           </Button>
         }
       />
 
-      <Card>
-        <form onSubmit={handleSubmit} className="space-y-6">
+      <Card className="p-4 sm:p-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           {createProductMutation.isError && (
             <div
               className="rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-100"
@@ -141,9 +142,9 @@ export function CreateProductPage() {
             </div>
           )}
 
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2">
             <label className="block text-sm sm:col-span-2">
-              <span className="mb-2 block font-semibold text-slate-200">
+              <span className="mb-1.5 sm:mb-2 block text-xs sm:text-sm font-semibold text-slate-200">
                 Product Title <span className="text-red-400">*</span>
               </span>
               <Input
@@ -165,7 +166,7 @@ export function CreateProductPage() {
             </label>
 
             <label className="block text-sm sm:col-span-2">
-              <span className="mb-2 block font-semibold text-slate-200">
+              <span className="mb-1.5 sm:mb-2 block text-xs sm:text-sm font-semibold text-slate-200">
                 Description <span className="text-red-400">*</span>
               </span>
               <textarea
@@ -190,7 +191,7 @@ export function CreateProductPage() {
             </label>
 
             <label className="block text-sm">
-              <span className="mb-2 block font-semibold text-slate-200">
+              <span className="mb-1.5 sm:mb-2 block text-xs sm:text-sm font-semibold text-slate-200">
                 Price (USD) <span className="text-red-400">*</span>
               </span>
               <Input
@@ -214,7 +215,7 @@ export function CreateProductPage() {
             </label>
 
             <label className="block text-sm">
-              <span className="mb-2 block font-semibold text-slate-200">
+              <span className="mb-1.5 sm:mb-2 block text-xs sm:text-sm font-semibold text-slate-200">
                 Stock Quantity <span className="text-red-400">*</span>
               </span>
               <Input
@@ -237,7 +238,7 @@ export function CreateProductPage() {
             </label>
 
             <label className="block text-sm">
-              <span className="mb-2 block font-semibold text-slate-200">
+              <span className="mb-1.5 sm:mb-2 block text-xs sm:text-sm font-semibold text-slate-200">
                 Brand <span className="text-red-400">*</span>
               </span>
               <Select
@@ -264,7 +265,7 @@ export function CreateProductPage() {
             </label>
 
             <label className="block text-sm">
-              <span className="mb-2 block font-semibold text-slate-200">
+              <span className="mb-1.5 sm:mb-2 block text-xs sm:text-sm font-semibold text-slate-200">
                 Category <span className="text-red-400">*</span>
               </span>
               <Select

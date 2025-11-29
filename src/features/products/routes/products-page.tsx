@@ -105,7 +105,7 @@ export function ProductsPage() {
   }
 
   return (
-    <section className="space-y-8">
+    <section className="space-y-4 sm:space-y-6 md:space-y-8">
       <PageHeader
         title="Products"
         description="Browse the entire catalog with pagination, filters, sorting, and accessible interactions."
@@ -132,19 +132,19 @@ export function ProductsPage() {
 
       <Card className="space-y-4">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-2">
-            <div className="rounded-lg bg-brand-500/20 px-3 py-1.5">
-              <p className="text-sm font-semibold text-brand-300">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+            <div className="rounded-lg bg-brand-500/20 px-2.5 sm:px-3 py-1 sm:py-1.5">
+              <p className="text-xs sm:text-sm font-semibold text-brand-300">
                 {totalItems} {totalItems === 1 ? 'result' : 'results'}
               </p>
             </div>
-            <p className="text-sm text-slate-400">
+            <p className="text-xs sm:text-sm text-slate-400">
               Sorted by <span className="font-medium text-white">{sort === 'newest' ? 'newest first' : 'oldest first'}</span> · Page{' '}
               <span className="font-medium text-white">{pageIndex}</span> of{' '}
               <span className="font-medium text-white">{totalPages}</span>
             </p>
           </div>
-          <Button variant="ghost" size="sm" onClick={() => refetch()} disabled={isPending}>
+          <Button variant="ghost" size="sm" onClick={() => refetch()} disabled={isPending} className="text-xs sm:text-sm">
             ↻ Refresh
           </Button>
         </div>
@@ -183,115 +183,178 @@ export function ProductsPage() {
             </Button>
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-lg border border-white/10">
-            <table className="min-w-full divide-y divide-white/10">
-              <thead className="bg-gradient-to-r from-surface-200/50 to-surface-300/30 text-left text-xs uppercase tracking-widest text-slate-400">
-                <tr>
-                  <th scope="col" className="py-4 pl-6 pr-4 font-semibold">
-                    Product
-                  </th>
-                  <th scope="col" className="py-4 px-4 font-semibold">
-                    Brand
-                  </th>
-                  <th scope="col" className="py-4 px-4 font-semibold">
-                    Category
-                  </th>
-                  <th scope="col" className="py-4 px-4 font-semibold">
-                    Price
-                  </th>
-                  <th scope="col" className="py-4 px-4 font-semibold">
-                    Rating
-                  </th>
-                  <th scope="col" className="py-4 px-4 font-semibold">
-                    Stock
-                  </th>
-                  <th scope="col" className="py-4 pl-4 pr-6 font-semibold">
-                    Created
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5 bg-surface-200/20">
-                {pagedProducts.map((product) => (
-                  <tr
-                    key={product.id}
-                    tabIndex={0}
-                    role="button"
-                    onClick={() => handleNavigateToProduct(product.id)}
-                    onKeyDown={(event) => {
-                      if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault()
-                        handleNavigateToProduct(product.id)
-                      }
-                    }}
-                    className="group cursor-pointer bg-white/0 transition-all duration-200 hover:bg-gradient-to-r hover:from-brand-500/10 hover:to-brand-600/5 hover:shadow-lg hover:shadow-brand-500/5 focus:bg-white/10"
-                  >
-                    <td className="py-4 pl-6 pr-4">
-                      <div className="flex items-center gap-3">
-                        <div className="relative overflow-hidden rounded-lg ring-2 ring-white/10 transition-all group-hover:ring-brand-500/30">
-                          <img
-                            src={product.thumbnail}
-                            alt=""
-                            width={56}
-                            height={56}
-                            className="h-14 w-14 object-cover transition-transform duration-200 group-hover:scale-110"
-                            loading="lazy"
-                          />
-                        </div>
-                        <div className="min-w-0 flex-1">
-                          <p className="font-semibold text-white transition-colors group-hover:text-brand-300">
-                            {product.title}
-                          </p>
-                          <p className="mt-0.5 text-xs text-slate-400 line-clamp-1">
-                            {product.description}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4">
-                      <span className="inline-flex items-center rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-slate-300">
-                        {product.brand}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4">
-                      <span className="inline-flex items-center rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-slate-300 capitalize">
-                        {product.category.replace(/-/g, ' ')}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4">
-                      <span className="text-sm font-bold text-white">
-                        {currencyFormatter.format(product.price)}
-                      </span>
-                    </td>
-                    <td className="py-4 px-4">
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-sm font-semibold text-white">
-                          {product.rating.toFixed(1)}
+          <>
+            {/* Mobile Card View */}
+            <div className="block sm:hidden space-y-3">
+              {pagedProducts.map((product) => (
+                <Card
+                  key={product.id}
+                  tabIndex={0}
+                  role="button"
+                  onClick={() => handleNavigateToProduct(product.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault()
+                      handleNavigateToProduct(product.id)
+                    }
+                  }}
+                  className="cursor-pointer transition-all duration-200 hover:bg-white/10 hover:shadow-lg hover:shadow-brand-500/5 focus:bg-white/10 p-4"
+                >
+                  <div className="flex gap-3">
+                    <img
+                      src={product.thumbnail}
+                      alt=""
+                      width={80}
+                      height={80}
+                      className="h-20 w-20 rounded-lg object-cover flex-shrink-0"
+                      loading="lazy"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-white text-sm mb-1 line-clamp-2">
+                        {product.title}
+                      </h3>
+                      <div className="flex flex-wrap items-center gap-2 mt-2">
+                        <span className="inline-flex items-center rounded-md bg-white/5 px-2 py-0.5 text-xs font-medium text-slate-300">
+                          {product.brand}
                         </span>
-                        <span className="text-xs text-slate-400">/ 5</span>
-                        <span className="text-yellow-400">★</span>
+                        <span className="text-xs font-bold text-white">
+                          {currencyFormatter.format(product.price)}
+                        </span>
+                        <span
+                          className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-semibold ${
+                            product.stock > 50
+                              ? 'bg-accent-success/20 text-accent-success'
+                              : product.stock > 0
+                                ? 'bg-accent-warning/20 text-accent-warning'
+                                : 'bg-accent-error/20 text-accent-error'
+                          }`}
+                        >
+                          {product.stock} in stock
+                        </span>
                       </div>
-                    </td>
-                    <td className="py-4 px-4">
-                      <span
-                        className={`inline-flex items-center rounded-md px-2.5 py-1 text-xs font-semibold ${
-                          product.stock > 50
-                            ? 'bg-accent-success/20 text-accent-success'
-                            : product.stock > 0
-                              ? 'bg-accent-warning/20 text-accent-warning'
-                              : 'bg-accent-error/20 text-accent-error'
-                        }`}
-                      >
-                        {product.stock}
-                      </span>
-                    </td>
-                    <td className="py-4 pl-4 pr-6 text-sm text-slate-400">
-                      {formatDate(product.meta?.createdAt)}
-                    </td>
+                      <div className="flex items-center gap-2 mt-2">
+                        <span className="text-xs text-slate-400">
+                          {product.rating.toFixed(1)}/5
+                        </span>
+                        <span className="text-yellow-400 text-xs">★</span>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden sm:block overflow-x-auto rounded-lg border border-white/10">
+              <table className="min-w-full divide-y divide-white/10">
+                <thead className="bg-gradient-to-r from-surface-200/50 to-surface-300/30 text-left text-xs uppercase tracking-widest text-slate-400">
+                  <tr>
+                    <th scope="col" className="py-3 pl-4 sm:pl-6 pr-2 sm:pr-4 font-semibold">
+                      Product
+                    </th>
+                    <th scope="col" className="py-3 px-2 sm:px-4 font-semibold">
+                      Brand
+                    </th>
+                    <th scope="col" className="py-3 px-2 sm:px-4 font-semibold hidden md:table-cell">
+                      Category
+                    </th>
+                    <th scope="col" className="py-3 px-2 sm:px-4 font-semibold">
+                      Price
+                    </th>
+                    <th scope="col" className="py-3 px-2 sm:px-4 font-semibold">
+                      Rating
+                    </th>
+                    <th scope="col" className="py-3 px-2 sm:px-4 font-semibold">
+                      Stock
+                    </th>
+                    <th scope="col" className="py-3 pl-2 sm:pl-4 pr-4 sm:pr-6 font-semibold hidden lg:table-cell">
+                      Created
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-white/5 bg-surface-200/20">
+                  {pagedProducts.map((product) => (
+                    <tr
+                      key={product.id}
+                      tabIndex={0}
+                      role="button"
+                      onClick={() => handleNavigateToProduct(product.id)}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault()
+                          handleNavigateToProduct(product.id)
+                        }
+                      }}
+                      className="group cursor-pointer bg-white/0 transition-all duration-200 hover:bg-gradient-to-r hover:from-brand-500/10 hover:to-brand-600/5 hover:shadow-lg hover:shadow-brand-500/5 focus:bg-white/10"
+                    >
+                      <td className="py-3 sm:py-4 pl-4 sm:pl-6 pr-2 sm:pr-4">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <div className="relative overflow-hidden rounded-lg ring-2 ring-white/10 transition-all group-hover:ring-brand-500/30 flex-shrink-0">
+                            <img
+                              src={product.thumbnail}
+                              alt=""
+                              width={56}
+                              height={56}
+                              className="h-12 w-12 sm:h-14 sm:w-14 object-cover transition-transform duration-200 group-hover:scale-110"
+                              loading="lazy"
+                            />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="font-semibold text-white text-sm sm:text-base transition-colors group-hover:text-brand-300 line-clamp-1">
+                              {product.title}
+                            </p>
+                            <p className="mt-0.5 text-xs text-slate-400 line-clamp-1 hidden sm:block">
+                              {product.description}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="py-3 sm:py-4 px-2 sm:px-4">
+                        <span className="inline-flex items-center rounded-md bg-white/5 px-2 py-1 text-xs font-medium text-slate-300">
+                          {product.brand}
+                        </span>
+                      </td>
+                      <td className="py-3 sm:py-4 px-2 sm:px-4 hidden md:table-cell">
+                        <span className="inline-flex items-center rounded-md bg-white/5 px-2.5 py-1 text-xs font-medium text-slate-300 capitalize">
+                          {product.category.replace(/-/g, ' ')}
+                        </span>
+                      </td>
+                      <td className="py-3 sm:py-4 px-2 sm:px-4">
+                        <span className="text-xs sm:text-sm font-bold text-white">
+                          {currencyFormatter.format(product.price)}
+                        </span>
+                      </td>
+                      <td className="py-3 sm:py-4 px-2 sm:px-4">
+                        <div className="flex items-center gap-1 sm:gap-1.5">
+                          <span className="text-xs sm:text-sm font-semibold text-white">
+                            {product.rating.toFixed(1)}
+                          </span>
+                          <span className="text-xs text-slate-400 hidden sm:inline">/ 5</span>
+                          <span className="text-yellow-400 text-xs sm:text-sm">★</span>
+                        </div>
+                      </td>
+                      <td className="py-3 sm:py-4 px-2 sm:px-4">
+                        <span
+                          className={`inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold ${
+                            product.stock > 50
+                              ? 'bg-accent-success/20 text-accent-success'
+                              : product.stock > 0
+                                ? 'bg-accent-warning/20 text-accent-warning'
+                                : 'bg-accent-error/20 text-accent-error'
+                          }`}
+                        >
+                          {product.stock}
+                        </span>
+                      </td>
+                      <td className="py-3 sm:py-4 pl-2 sm:pl-4 pr-4 sm:pr-6 text-xs sm:text-sm text-slate-400 hidden lg:table-cell">
+                        {formatDate(product.meta?.createdAt)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
         )}
       </Card>
 
