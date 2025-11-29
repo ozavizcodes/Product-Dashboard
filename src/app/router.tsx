@@ -6,6 +6,7 @@ import { PublicRoute } from '@/lib/public-route'
 import { LoginPage } from '@/features/auth/routes/login-page'
 import { ProductsPage } from '@/features/products/routes/products-page'
 import { ProductDetailPage } from '@/features/products/routes/product-detail-page'
+import { CreateProductPage } from '@/features/products/routes/create-product-page'
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +42,14 @@ export const router = createBrowserRouter([
             element: (
               <ProtectedRoute>
                 <ProductDetailPage />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: '/products/new',
+            element: (
+              <ProtectedRoute>
+                <CreateProductPage />
               </ProtectedRoute>
             ),
           },

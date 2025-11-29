@@ -110,7 +110,10 @@ export function ProductsPage() {
         title="Products"
         description="Browse the entire catalog with pagination, filters, sorting, and accessible interactions."
         actions={
-          <Button variant="secondary" disabled title="Coming soon">
+          <Button
+            variant="secondary"
+            onClick={() => navigate('/products/new')}
+          >
             New product
           </Button>
         }
