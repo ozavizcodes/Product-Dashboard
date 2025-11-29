@@ -1,6 +1,8 @@
-# Product Dashboard · Lotus Beta Analytics Assessment
+# Product Dashboard
 
 A modern React SPA that lets operations users explore the products catalog from [dummyjson.com](https://dummyjson.com/products). Built with a focus on clarity of architecture, predictable data-fetching, accessibility-first UI primitives, and thoughtful UX patterns.
+
+> **Note:** Screenshots should showcase the main Products page (`/products`) which displays the paginated product list with filters, search, and sorting capabilities.
 
 ## Features
 
@@ -161,11 +163,13 @@ npm run preview    # Preview production build locally
 
 ## Deployment
 
-**Live Demo:** [Add Netlify URL here after deployment]
+**Live Demo:** [Add Vercel URL here after deployment]
 
 **Build Command:** `npm run build`  
 **Publish Directory:** `dist`  
 **Environment Variables:** None required (public API)
+
+**Deployment Platform:** Vercel (configured with `vercel.json` for SPA routing)
 
 ## License
 

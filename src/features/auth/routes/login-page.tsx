@@ -27,7 +27,7 @@ export function LoginPage() {
   }
 
   return (
-    <section className="mx-auto max-w-md space-y-8">
+    <section className="mx-auto max-w-md space-y-8 pt-8 sm:pt-12">
       <PageHeader
         title="Sign In"
         description="Enter your credentials to access the product dashboard."
