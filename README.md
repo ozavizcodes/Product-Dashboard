@@ -171,10 +171,6 @@ npm run preview    # Preview production build locally
 
 **Deployment Platform:** Vercel
 
-## License
-
-This project was built as an assessment for Lotus Beta Analytics.
-
 ---
 
 **Built with ❤️ using React, TypeScript, and modern web standards.**
